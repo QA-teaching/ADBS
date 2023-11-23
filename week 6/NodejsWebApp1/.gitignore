@@ -1,0 +1,15 @@
+node_modules
+**/dist
+**/.build
+results
+.nyc_output
+*.tsbuildinfo
+.env
+coverage
+**/.serverless
+**/.DS_Store
+**/.dynamodb
+**/.webpack
+
+.vscode/settings.json
+.idea
