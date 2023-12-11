@@ -10,6 +10,7 @@ const app = express();
 // const dbURI = 'mongodb+srv://ADBMSUser:Password123@cluster0.e7v3d.mongodb.net/SalesDB?retryWrites=true&w=majority';
 const dbURI = 'mongodb://127.0.0.1:27017/SalesDB';
 
+
 //using mongoose to connect to MongoDB, the last two option to avoid deprecation warnings.
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => {
@@ -54,8 +55,8 @@ app.get('/all-sales', (req, res) => {
 
 
 
-app.get('/single-sale', (req, res) => {
-    Sale.findbyID('MongoDB_Document_ID')//get ID from MongoDB and paster here
+app.get('/single-sale/:id', (req, res) => {
+    Sale.findById(req.params.id)//get ID from MongoDB and paster here
         .then((result) => {
             res.send(result)
         })
