@@ -2,11 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const db = require("./models");
-const Role = db.role;
-
 const user = require("./routes/user.routes");
 const auth = require("./routes/auth.routes");
+
+const connectDB = require("./config/db.config"); // Import the connectDB function
 
 const app = express();
 
@@ -31,40 +30,8 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to User Authenticvation Application application." });
 });
 
-//mongoDB connection URI, remember to change 'password' with your password and myFirstDatabase with your database name
-const dbURI = 'mongodb://127.0.0.1:27017/School';
-
-//using mongoose to connect to MongoDB, the last two option to avoid deprecation warnings.
-db.mongoose.connect(dbURI)
-    .then(async () => {
-        console.log('Connected to the database');
-        
-        
-
-        // Function to create 3 rows in the roles collection
-        const count = await Role.estimatedDocumentCount();
-
-        if (count === 0) {
-            await new Role({
-                name: "admin"
-            }).save();
-
-            await new Role({
-                name: "user"
-            }).save();
-
-            await new Role({
-                name: "moderator"
-            }).save();
-
-            console.log("Added 'admin', 'user' and 'moderator' to roles collection");
-        }
-
-    })
-    .catch((err) => {
-        console.log("Connection error", err);
-        process.exit();
-    });
+// Use the connectDB function to establish the MongoDB connection
+connectDB();
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
