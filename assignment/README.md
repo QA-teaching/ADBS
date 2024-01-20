@@ -464,10 +464,3 @@ This portion completes the CRUD operations:
 
 
 ---
-
-**Overall**, the provided code facilitates operations related to comments in a movie application. Users can add comments to movies, delete their comments, and view comments for specific movies. Both the movie and comment structures are defined using Mongoose schemas and stored in MongoDB. The operations are neatly encapsulated within asynchronous functions that handle potential errors gracefully.
-
----
-
-**CONCLUSION**
-In conclusion, this project offers a comprehensive web platform focused on movies, combining the robustness of Express.js, MongoDB, and various other tools and libraries to create an engaging user experience.
